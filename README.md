@@ -38,6 +38,13 @@ Remove the container:
 docker rm cse_375_levelDB
 ```
 
+## Building
+LevelDB can be built with cmake, from the LevelDB repo README:
+```
+mkdir -p build && cd build
+cmake -DCMAKE_BUILD_TYPE=Release .. && cmake --build .
+```
+
 This repo assumes the following file structure:
 ```
 leveldb_rotating_skiplist (this repo)
