@@ -45,6 +45,11 @@ mkdir -p build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release .. && cmake --build .
 ```
 
+## Changes
+In order to implement the [rotating skiplist](https://github.com/gramoli/synchrobench/tree/master/c-cpp/src/skiplists/rotating) into [LevelDB](https://github.com/google/leveldb) the following files were updated in leveldb/db
+* skiplist.h
+
+## File Structure
 This repo assumes the following file structure:
 ```
 leveldb_rotating_skiplist (this repo)
