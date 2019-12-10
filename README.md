@@ -1,4 +1,5 @@
 # LevelDB with Rotating Skiplist
+##### A Project by Jesse Galloway and Sam Paleologopoulos
 Implementing Syncrobench's Rotating Skiplist into Google's LevelDB Key-Value store
 
 ## Deliverables
@@ -13,7 +14,11 @@ If we find that our custom implementation performs worse than the original Level
 * We performed an incomplete implementation and there is a bottleneck leftover from the original skiplist in LevelDB
 * The rotating skiplist is not well suited for the workload of LevelDB
 
-## Installation
+## Changes
+In order to implement the [rotating skiplist](https://github.com/gramoli/synchrobench/tree/master/c-cpp/src/skiplists/rotating) into [LevelDB](https://github.com/google/leveldb) the following files were updated in leveldb/db
+* skiplist.h
+
+## Recreate this Project
 #### Docker
 We created a Ubuntu docker image to run leveldb in:
 ```
@@ -50,17 +55,18 @@ Remove the container:
 docker rm cse_375_levelDB
 ```
 
+#### Clone Repos
+Syncrobench and LevelDB were cloned at the root of this repository
+
 #### Building
-LevelDB can be built with cmake, from the LevelDB repo README:
+LevelDB can be built with cmake from the leveldb directory, from the LevelDB repo README:
 ```bash
 mkdir -p build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release .. && cmake --build .
 ```
+Syncrobench can be built by running make in the syncrobench directory
 
-## Changes
-In order to implement the [rotating skiplist](https://github.com/gramoli/synchrobench/tree/master/c-cpp/src/skiplists/rotating) into [LevelDB](https://github.com/google/leveldb) the following files were updated in leveldb/db
-* skiplist.h
-
+#### File Structure
 This repo assumes the following file structure:
 ```
 leveldb_rotating_skiplist (this repo)
