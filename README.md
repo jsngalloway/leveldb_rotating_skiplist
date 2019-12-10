@@ -8,7 +8,7 @@ We created a Ubuntu docker image to run leveldb in:
 docker pull ubuntu
 ```
 Create the container using the dockerfile:
-```
+```dockerfile
 # Dockerfile to build a container for CSE303 development
 FROM ubuntu
 MAINTAINER Jesse Galloway (jsg220@lehigh.edu)
@@ -25,22 +25,22 @@ RUn apt-get -y install cmake
 WORKDIR "/root"
 ```
 In the directory of the Dockerfile, built the container once and create a shared directory:
-```
+```cmd
 docker build -t cse_375 .
 mkdir shared
 ```
 Boot the container:
-```
+```cmd
 docker run -e SHELL=/bin/bash --privileged -v "path\to\cd\shared:/root" --name cse_375_levelDB -it cse_375
 ```
 Remove the container:
-```
+```cmd
 docker rm cse_375_levelDB
 ```
 
 ## Building
 LevelDB can be built with cmake, from the LevelDB repo README:
-```
+```bash
 mkdir -p build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release .. && cmake --build .
 ```
