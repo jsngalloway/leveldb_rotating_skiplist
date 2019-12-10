@@ -45,11 +45,28 @@ mkdir -p build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release .. && cmake --build .
 ```
 
+### Objectives
+* Create generic test file we can run on the syncrobench skiplist and LevelBD
+    * Expect the rotating skiplist to outperform levelDB
+
+
 ## Changes
 In order to implement the [rotating skiplist](https://github.com/gramoli/synchrobench/tree/master/c-cpp/src/skiplists/rotating) into [LevelDB](https://github.com/google/leveldb) the following files were updated in leveldb/db
 * skiplist.h
 
-## File Structure
+## Deliverables
+#### Benchmarks
+We aim to create a benchmark consisting of a test running on three systems:
+* [Stock LevelDB](https://github.com/google/leveldb)
+* [Stock Rotating Skiplist](https://github.com/gramoli/synchrobench/tree/master/c-cpp/src/skiplists/rotating)
+* LevelDB with Rotating Skiplist
+
+We expect to see the Stock Rotating Skiplist perform the best, LevelDB the worst, and our custom implementation somewhere in the middle.
+If we find that our custom implementation performs worse than the original LevelDB this could be indicitive of two things:
+* We performed an incomplete implementation and there is a bottleneck leftover from the original skiplist in LevelDB
+* The rotating skiplist is not well suited for the workload of LevelDB
+
+### File Structure
 This repo assumes the following file structure:
 ```
 leveldb_rotating_skiplist (this repo)
