@@ -20,7 +20,8 @@ Using a scheme of randomly selecting between:
 * 20% Inserts
 * 70% Lookups
 * 10% Deletes
-We found the following
+We found the following:
+
 | Opration Total  | Execution Time |
 | ------------- | ------------- |
 | 10,000  | 34.6ms  |
