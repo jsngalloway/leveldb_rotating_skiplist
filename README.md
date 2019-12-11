@@ -15,6 +15,11 @@ If we find that our custom implementation performs worse than the original Level
 * The rotating skiplist is not well suited for the workload of LevelDB
 
 #### Benchmark Results
+**Specs:**
+* Docker: Ubuntu 18.04.3 LTS (Bionic Beaver)
+* Mem limit: 1.952GiB
+* Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz
+
 **Stock LevelDB**
 Using a scheme of randomly selecting between:
 * 20% Inserts
