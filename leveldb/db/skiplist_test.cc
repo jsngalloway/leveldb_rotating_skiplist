@@ -3,7 +3,8 @@
 // found in the LICENSE file. See the AUTHORS file for names of contributors.
 
 #include "db/skiplist.h"
-
+#include <iostream>
+#include <chrono>
 #include <atomic>
 #include <set>
 
@@ -49,8 +50,8 @@ TEST(SkipTest, Empty) {
 }
 
 TEST(SkipTest, InsertAndLookup) {
-  const int N = 2000;
-  const int R = 5000;
+  const int N = 1024;
+  int R = 1000;
   Random rnd(1000);
   std::set<Key> keys;
   Arena arena;
@@ -62,7 +63,8 @@ TEST(SkipTest, InsertAndLookup) {
       list.Insert(key);
     }
   }
-
+  std::chrono::high_resolution_clock::time_point start = std::chrono::high_resolution_clock::now();
+  std::cout << "-----------------------------------------------------------------------------------------" << std::endl;
   for (int i = 0; i < R; i++) {
     if (list.Contains(i)) {
       ASSERT_EQ(keys.count(i), 1);
@@ -70,6 +72,80 @@ TEST(SkipTest, InsertAndLookup) {
       ASSERT_EQ(keys.count(i), 0);
     }
   }
+  std::cout << "-----------------------------------------------------------------------------------------" << std::endl;
+  std::chrono::high_resolution_clock::time_point end = std::chrono::high_resolution_clock::now();
+  std::cout << "Did [" << R << "] lookups in: " << std::chrono::duration_cast<std::chrono::duration<double>>(end - start).count()*1000 << " ms" << std::endl;
+  std::cout << "-----------------------------------------------------------------------------------------" << std::endl;
+  R = 10000;
+  start = std::chrono::high_resolution_clock::now();
+  std::cout << "-----------------------------------------------------------------------------------------" << std::endl;
+  for (int i = 0; i < R; i++) {
+    if (list.Contains(i)) {
+      ASSERT_EQ(keys.count(i), 1);
+    } else {
+      ASSERT_EQ(keys.count(i), 0);
+    }
+  }
+  std::cout << "-----------------------------------------------------------------------------------------" << std::endl;
+  end = std::chrono::high_resolution_clock::now();
+  std::cout << "Did [" << R << "] lookups in: " << std::chrono::duration_cast<std::chrono::duration<double>>(end - start).count()*1000 << " ms" << std::endl;
+  std::cout << "-----------------------------------------------------------------------------------------" << std::endl;
+  R = 100000;
+  start = std::chrono::high_resolution_clock::now();
+  std::cout << "-----------------------------------------------------------------------------------------" << std::endl;
+  for (int i = 0; i < R; i++) {
+    if (list.Contains(i)) {
+      ASSERT_EQ(keys.count(i), 1);
+    } else {
+      ASSERT_EQ(keys.count(i), 0);
+    }
+  }
+  std::cout << "-----------------------------------------------------------------------------------------" << std::endl;
+  end = std::chrono::high_resolution_clock::now();
+  std::cout << "Did [" << R << "] lookups in: " << std::chrono::duration_cast<std::chrono::duration<double>>(end - start).count()*1000 << " ms" << std::endl;
+  std::cout << "-----------------------------------------------------------------------------------------" << std::endl;
+  R = 1000000;
+  start = std::chrono::high_resolution_clock::now();
+  std::cout << "-----------------------------------------------------------------------------------------" << std::endl;
+  for (int i = 0; i < R; i++) {
+    if (list.Contains(i)) {
+      ASSERT_EQ(keys.count(i), 1);
+    } else {
+      ASSERT_EQ(keys.count(i), 0);
+    }
+  }
+  std::cout << "-----------------------------------------------------------------------------------------" << std::endl;
+   end = std::chrono::high_resolution_clock::now();
+  std::cout << "Did [" << R << "] lookups in: " << std::chrono::duration_cast<std::chrono::duration<double>>(end - start).count()*1000 << " ms" << std::endl;
+  std::cout << "-----------------------------------------------------------------------------------------" << std::endl;
+  R = 10000000;
+  start = std::chrono::high_resolution_clock::now();
+  std::cout << "-----------------------------------------------------------------------------------------" << std::endl;
+  for (int i = 0; i < R; i++) {
+    if (list.Contains(i)) {
+      ASSERT_EQ(keys.count(i), 1);
+    } else {
+      ASSERT_EQ(keys.count(i), 0);
+    }
+  }
+  std::cout << "-----------------------------------------------------------------------------------------" << std::endl;
+  end = std::chrono::high_resolution_clock::now();
+  std::cout << "Did [" << R << "] lookups in: " << std::chrono::duration_cast<std::chrono::duration<double>>(end - start).count()*1000 << " ms" << std::endl;
+  std::cout << "-----------------------------------------------------------------------------------------" << std::endl;
+  R = 100000000;
+    start = std::chrono::high_resolution_clock::now();
+  std::cout << "-----------------------------------------------------------------------------------------" << std::endl;
+  for (int i = 0; i < R; i++) {
+    if (list.Contains(i)) {
+      ASSERT_EQ(keys.count(i), 1);
+    } else {
+      ASSERT_EQ(keys.count(i), 0);
+    }
+  }
+  std::cout << "-----------------------------------------------------------------------------------------" << std::endl;
+  end = std::chrono::high_resolution_clock::now();
+  std::cout << "Did [" << R << "] lookups in: " << std::chrono::duration_cast<std::chrono::duration<double>>(end - start).count()*1000 << " ms" << std::endl;
+  std::cout << "-----------------------------------------------------------------------------------------" << std::endl;
 
   // Simple iterator tests
   {
