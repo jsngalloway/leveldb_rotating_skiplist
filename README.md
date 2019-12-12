@@ -14,6 +14,25 @@ If we find that our custom implementation performs worse than the original Level
 * We performed an incomplete implementation and there is a bottleneck leftover from the original skiplist in LevelDB
 * The rotating skiplist is not well suited for the workload of LevelDB
 
+#### Benchmark Results
+**Specs:**
+* Docker: Ubuntu 18.04.3 LTS (Bionic Beaver)
+* Mem limit: 1.952GiB
+* Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz
+
+**Stock LevelDB**
+Using a scheme of randomly selecting between:
+* 20% Inserts
+* 70% Lookups
+* 10% Deletes
+We found the following:
+
+| Opration Total  | Execution Time | Ops/ms |
+| ------------- | ------------- | --- |
+| 1,000  | 1.94ms  | 515 |
+| 10,000  | 34.6ms  | 289 |
+| 100,000  | 2576.1ms  | 39 |
+
 ## Changes
 In order to implement the [rotating skiplist](https://github.com/gramoli/synchrobench/tree/master/c-cpp/src/skiplists/rotating) into [LevelDB](https://github.com/google/leveldb) the following files were updated in leveldb/db
 * skiplist.h
