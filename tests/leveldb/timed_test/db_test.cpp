@@ -37,7 +37,7 @@ bool remove(leveldb::DB* db, string key){
     return(db->Delete(leveldb::WriteOptions(), key)).ok();
 }
 
-int main() 
+int runTest(double dur) 
 {
     leveldb::DB* db;
     leveldb::Options options;
@@ -46,12 +46,12 @@ int main()
     assert(status.ok());
     cout << "Created databse.\t\t\t\tStatus: " << str_status(status.ok()) << endl;
 
-    double TEST_DURATION_S = 10;
+    double TEST_DURATION_S = dur/1000;
     size_t pre_population_size = 256;
-    float percent_insert = 0.00;
-    float percent_lookup = 0.95;
-    float percent_delete = 0.00;
-    float percent_updates = 0.05;
+    float percent_insert = 0.05;
+    float percent_lookup = 0.90;
+    float percent_delete = 0.05;
+    // float percent_updates = 0.05;
     list<string> inserted_values;
 
     for(size_t i = pre_population_size; i > 0; i--){
@@ -134,4 +134,13 @@ int main()
     cout << "Completed test." << endl;
 
     return 0;
+}
+
+int main(){
+    runTest(500);
+    runTest(1000);
+    runTest(2000);
+    runTest(5000);
+    runTest(10000);
+    runTest(20000);
 }
