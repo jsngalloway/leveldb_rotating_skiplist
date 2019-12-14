@@ -32,6 +32,7 @@ We found the following:
 | 1,000  | 1.94ms  | 515 |
 | 10,000  | 34.6ms  | 289 |
 | 100,000  | 2576.1ms  | 39 |
+
 Full results can be found in our paper in the root of this repo.
 
 ## Recreate this Project
